@@ -1,3 +1,5 @@
+import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -5,11 +7,7 @@ import Button from '@/components/Button/Button';
 import WhiteLogo from '../assets/images/white-logo.png';
 import RightArrow from '../assets/images/right-arrow.png';
 import GuideImg from '../assets/images/guide.png';
-
 import { CategoriesApi, HighlightsApi } from '@/HttpRequest/Apis';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-
-import 'react-loading-skeleton/dist/skeleton.css';
 import Navbar from '@/components/Navbar/Navbar';
 
 interface StateType {
@@ -162,7 +160,7 @@ const Home = () => {
                               alt=""
                               className={`${
                                 selectedCategory.name === item.name &&
-                                'rotate-45'
+                                'rotate-90'
                               }`}
                             />
                           </div>
@@ -171,7 +169,7 @@ const Home = () => {
                           selectedCategory?.activities.map(
                             (item: any, index) => (
                               <div
-                                className="p-4 bg-white rounded-lg"
+                                className="p-4 bg-white font-bold"
                                 key={index}
                               >
                                 {item.title}
@@ -182,6 +180,8 @@ const Home = () => {
                     ))}
               </div>
             </div>
+
+            {/* TRAVEL GUIDE START */}
             <div>
               <h1 className="py-2 text-[16px] font-bold">Travel Guide</h1>
               <div className="bg-white p-5 300px:min-w-[320px] xl:min-w-[560px] rounded-lg mt-3">
@@ -203,18 +203,20 @@ const Home = () => {
                     <Image
                       src={GuideImg}
                       alt="guide"
-                      className="min-w-[74px] min-h-[74px]"
+                      width={128}
+                      height={128}
                     />
                   </div>
                 </div>
               </div>
             </div>
+            {/* TRAVEL GUIDE END */}
           </div>
         </div>
         {/* CATEGORIES END */}
 
         {/* FOOTER START */}
-        <div className="bg-black 300px:p-4 sm:p-0">
+        <div className="bg-black">
           <div className="py-6 text-white wrapper">
             <Image src={WhiteLogo} alt="footer" />
           </div>

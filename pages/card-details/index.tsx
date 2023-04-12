@@ -13,6 +13,7 @@ interface stateType {
     description: string;
     activities: Array<any>;
   };
+  loading: boolean;
 }
 
 const initialState = {
@@ -22,18 +23,21 @@ const initialState = {
     description: '',
     activities: [],
   },
+  loading: true,
 };
 
 const cardDetails = () => {
   const router = useRouter();
   const { category } = router.query;
 
-  const [{ cardDetails }, setState] = useState<stateType>(initialState);
+  const [{ cardDetails, loading }, setState] =
+    useState<stateType>(initialState);
 
   const ActivitiesApiRes = (res: any): void => {
     setState(prevData => ({
       ...prevData,
       cardDetails: res,
+      loading: false,
     }));
   };
 
@@ -60,16 +64,24 @@ const cardDetails = () => {
                 {cardDetails.image && (
                   <Image
                     src={cardDetails.image}
-                    className="h-[300px] w-fit rounded-lg mx-auto mb-5"
+                    className="h-[300px] w-[700px]  rounded-lg mx-auto mb-5"
                     width={100}
                     height={200}
                     alt=""
                   />
                 )}
-                <h1 className="text-[29px] font-bold">{cardDetails.name}</h1>
-                <p className="py-6 text-[16px] font-normal">
-                  {cardDetails.description}
-                </p>
+                {!loading ? (
+                  <div>
+                    <h1 className="text-[29px] font-bold">
+                      {cardDetails.name}
+                    </h1>
+                    <p className="py-6 text-[16px] font-normal">
+                      {cardDetails.description}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-center py-20">Loading...</p>
+                )}
               </>
             </div>
           </div>
@@ -77,13 +89,17 @@ const cardDetails = () => {
         <div className="bg-[#E6F2F2] py-4">
           <div className="wrapper 300px:p-4 md:p-0">
             <h1 className="text-[16px] font-bold py-5">Activities</h1>
-            <div className="flex flex-col">
-              {cardDetails.activities?.map((item: any) => (
-                <div className="flex items-center max-w-full min-w-0 gap-1 px-4 py-4 my-3 bg-white rounded-lg cursor-pointer">
-                  <p className="text-[16px] font-normal">{item.name}</p>
-                </div>
-              ))}
-            </div>
+            {!loading ? (
+              <div className="flex flex-col">
+                {cardDetails.activities?.map((item: any) => (
+                  <div className="flex items-center max-w-full min-w-0 gap-1 px-4 py-4 my-3 bg-white rounded-lg cursor-pointer">
+                    <p className="text-[16px] font-normal">{item.name}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center py-20">Loading...</p>
+            )}
           </div>
         </div>
       </div>
