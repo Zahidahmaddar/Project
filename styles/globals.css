@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,11 +19,34 @@
 }
 
 body {
+  font-family: 'IBM Plex Mono', monospace;
   color: rgb(var(--foreground-rgb));
+}
+
+.banner {
+  background-image: url(../assets/images/banner-image.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+}
+
+.wrapper {
+  max-width: 1136px;
+  margin: 0 auto;
+}
+
+.boxShadow {
+  box-shadow: 2px 2px 20px rgba(161, 231, 252, 0.4);
+}
+
+.backgroundBlend {
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    180deg,
+    rgba(255, 255, 255, 0.5) 6.44%,
+    #ffffff 95.08%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
