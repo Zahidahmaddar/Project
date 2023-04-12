@@ -37,8 +37,6 @@ const cardDetails = () => {
     }));
   };
 
-  console.log('????', cardDetails);
-
   useEffect(() => {
     ActivitiesApi(ActivitiesApiRes, category);
   }, []);
@@ -46,7 +44,7 @@ const cardDetails = () => {
   return (
     <SkeletonTheme baseColor="#eee" highlightColor="#ccc">
       <div>
-        <div className="pt-20 wrapper">
+        <div className="pt-5 wrapper">
           <div className="300px:p-4 xl:p-0">
             <div className="flex flex-col">
               <Link href="/">
@@ -59,15 +57,15 @@ const cardDetails = () => {
             </div>
             <div className="my-6">
               <>
-                {/* {cardDetails.image && (
+                {cardDetails.image && (
                   <Image
                     src={cardDetails.image}
-                    alt=""
-                    className="w-full rounded-lg"
+                    className="h-[300px] w-fit rounded-lg mx-auto mb-5"
                     width={100}
                     height={200}
+                    alt=""
                   />
-                )} */}
+                )}
                 <h1 className="text-[29px] font-bold">{cardDetails.name}</h1>
                 <p className="py-6 text-[16px] font-normal">
                   {cardDetails.description}
@@ -81,7 +79,7 @@ const cardDetails = () => {
             <h1 className="text-[16px] font-bold py-5">Activities</h1>
             <div className="flex flex-col">
               {cardDetails.activities?.map((item: any) => (
-                <div className="flex items-center gap-1 px-4 py-4 my-3 bg-white rounded-lg cursor-pointer w-[500px]">
+                <div className="flex items-center max-w-full min-w-0 gap-1 px-4 py-4 my-3 bg-white rounded-lg cursor-pointer">
                   <p className="text-[16px] font-normal">{item.name}</p>
                 </div>
               ))}

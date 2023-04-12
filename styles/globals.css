@@ -20,7 +20,8 @@
 
 body {
   font-family: 'IBM Plex Mono', monospace;
-  color: rgb(var(--foreground-rgb));
+  /* color: rgb(var(--foreground-rgb)); */
+  color: #333;
 }
 
 .banner {
